@@ -1,6 +1,7 @@
 package net.java.banking_app.Controller;
 
 import net.java.banking_app.entity.Accounts;
+import net.java.banking_app.entity.TransactionHistory;
 import net.java.banking_app.exception.AccountNotFoundException;
 import net.java.banking_app.service.BankingService;
 import net.java.banking_app.serviceImpl.BankingServiceImpl;
@@ -67,7 +68,15 @@ public class BankingController {
         return bankingService.transferAmount(fromId, toId, amount);
     }
 
+    @GetMapping("/getTransactions")
+    public List<TransactionHistory> getTransactions() {
+       return bankingService.getTransactions();
+    }
 
+    @GetMapping("/getTransactionByAccountId/{id}")
+    public List<TransactionHistory> getTransactionById(@PathVariable("id") int accountId) {
+       return bankingService.getTransactionByAccountId(accountId);
+    }
 
 
 }
